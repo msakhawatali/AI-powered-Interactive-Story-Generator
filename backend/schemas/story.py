@@ -19,3 +19,22 @@ class CompleteStoryNodeResponse(StoryNodeBase):
 
     class config:
         from_attributes = True
+
+class StoryBase(BaseModel):
+    title : str
+    session_id : Optional[str] = None
+
+    class Config:
+        from_attributes = True
+
+class CreateStoryRequest(BaseModel):
+    theme : str
+
+class ComplateStoryResponce(StoryBase):
+    id : int
+    create_at : datetime
+    root_node : CompleteStoryNodeResponse
+    all_nodes : Dict[int, CompleteStoryNodeResponse]
+
+    class Config:
+        from_attributes = True
